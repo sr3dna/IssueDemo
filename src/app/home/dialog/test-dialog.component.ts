@@ -9,6 +9,7 @@ import { ModalDialogParams } from '@nativescript/angular';
 export class TestDialogComponent {
 
     public prompts: string[] = [];
+    public simpleText: string = "Thank you";
 
     constructor(private params?: ModalDialogParams) {
             this.prompts = params.context;

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef } from "@angular/core";
+import { Component, NgZone, OnInit, ViewContainerRef } from "@angular/core";
 import { ModalDialogOptions, ModalDialogService } from "nativescript-angular";
 import { ActionItem, Page } from "tns-core-modules";
 import { TestDialogComponent } from "./dialog/test-dialog.component";
@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
         private page: Page,
         protected viewContainerRef: ViewContainerRef,
         protected modalService: ModalDialogService,
+        private zone: NgZone
     ) {
     }
 
@@ -38,7 +39,10 @@ export class HomeComponent implements OnInit {
         newActionItem.text = "Select Item";
         newActionItem.on("tap", (args) => {
 
-            this.launchDialog();
+            this.zone.run(() => {
+                this.launchDialog();
+            })
+
 
             // setTimeout(() => {
             //     this.launchDialog();
